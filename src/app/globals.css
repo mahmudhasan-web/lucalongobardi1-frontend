@@ -2,20 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.space-mono-regular {
+  font-family: "Space Mono", serif;
+  font-weight: 500;
+  line-height: 2.5;
+  /* transform: scaleY(1.1); */
+  display: inline-block;
+  /* transform: scale(1.1); */
+  /* font-style: normal; */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.space-mono-bold {
+  font-family: "Space Mono", serif;
+  font-weight: 700;
+  
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+#chatIcon {
+  animation: chat 4s infinite ease-in-out; /* Updated easing and removed reverse */
+}
+
+@keyframes chat {
+  0% {
+    color: #ff735a;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  50% {
+    color: #e6a89f; /* Define the middle point for smooth transition */
+  }
+  100% {
+    color: #ff735a; /* Back to the initial color */
+  }
 }
