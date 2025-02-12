@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import "./Data.css"
+import TypingText from '../Test';
 
 const Data = () => {
     return (
-        <div  className="lg:text-2xl md:text-xl text-lg py-5 lg:w-[85%] w-full">
+        <div  className="lg:text-3xl md:text-2xl text-xl py-2 px-2 lg:w-[85%] w-full">
             <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-4 flex gap-5">
                 <FaChevronRight className="font-extrabold lg:text-4xl md:text-3xl text-2xl rotate-90" /> Data
             </h1>
@@ -40,9 +41,10 @@ const Data = () => {
                     <p className="text-gray-500 text-lg">of Americans (NIH 2021)</p>
                 </div>
             </div>
-            <p className="lg:w-[90%]">
-                Unknown food intolerances have a significant impact on society and lifestyle.
-            </p>
+            <div className="lg:w-[90%]">
+                
+                <TypingText text="UUnknown food intolerances have a significant impact on society and lifestyle." speed={30}></TypingText>
+            </div>
         </div>
     );
 };

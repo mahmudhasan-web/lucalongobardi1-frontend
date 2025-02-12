@@ -1,165 +1,196 @@
-"use client"
-
-import React, { useState, useRef, useEffect } from "react"
-import { processCommand } from "./CommandProcessor"
-import { FaChevronRight } from "react-icons/fa"
+'use client'
+import React, { useState, useRef, useEffect, JSX } from "react"
+// import OutputLine from "./OutputLine"
+// import Input from "./Input"
+// import ClickableCommand from "./ClickableCommand"
+import About from "./About/About"
+import { TypeAnimation } from "react-type-animation"
 import { IoChatbubblesOutline } from "react-icons/io5"
 import logo from '@/assists/Vector 2.png'
 import Image from "next/image"
-import { TypeAnimation } from "react-type-animation"
+import Problem from "./Problem/Problem"
+import Data from "./Data/Data"
+import Food from "./Food/Food"
+import Token from "./Token/Token"
+import ClickableCommand from "./ClickableCommand"
+import OutputLine from "./OutputLine"
+import Input from "./Input"
+
+const availableCommands = {
+    about: "List available commands",
+    problem: "Show help information",
+    data: "Display information about this terminal",
+    food: "Clear the terminal screen",
+    token: "Clear the terminal screen",
+}
 
 export default function Terminal() {
-    const [history, setHistory] = useState<(string | React.ReactNode)[]>([])
+    const [output, setOutput] = useState<(string | JSX.Element)[]>([])
+    const [inputValue, setInputValue] = useState("")
     const [inputWidth, setInputWidth] = useState(30);
-    const [currentInput, setCurrentInput] = useState("")
-    const inputRef = useRef<HTMLInputElement>(null)
-    const historyRef = useRef<HTMLFormElement>(null)
-    const availableCommands = ["about", "problem", "data", "food", "token"]
+    const bottomRef = useRef<HTMLDivElement>(null)
+
     useEffect(() => {
-        if (historyRef.current) {
-            historyRef.current.scrollTo({
-                top: historyRef.current.scrollHeight,
-                behavior: "smooth",
-            });
-        }
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth",
-        });
-    }, [history])
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCurrentInput(e.target.value)
-        setInputWidth((pre) => pre + 10)
-    }
-
-    const handleInputSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        if (currentInput.trim() === "") return
-
-        const output = processCommand(currentInput)
-        setHistory((prev) => [...prev, `Nutrigenix/agents > ${currentInput}`, output])
-        setCurrentInput("")
-        setInputWidth(30)
-
-    }
-
-    const focusInput = () => {
-        if (inputRef.current) {
-            inputRef.current.focus()
-        }
-    }
-
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [ bottomRef])
 
     const handleMouseEnter = (command: string) => {
         for (let index = 0; index < command.length; index++) {
             const element = command[index];
-            setCurrentInput((e) => e + element);
-            setInputWidth((pre) => pre + 10)
+            setInputValue((e) => e + element);
+            setInputWidth((pre) => pre + 15)
         }
 
     }
 
     const handleMouseLeave = () => {
-        setCurrentInput("")
+        setInputValue("")
         setInputWidth(30)
     }
 
-    const handleNavigation = () => {
-        const fakeEvent = { preventDefault: () => { } } as React.FormEvent<HTMLFormElement>;
-        handleInputSubmit(fakeEvent)
+
+
+    const handleCommand = (command: string) => {
+        setOutput((prev) => [...prev, `/Nutrigenix/agents > ${command}`])
+
+        switch (command.toLowerCase()) {
+            case "ls":
+                setOutput((prev) => [
+                    ...prev,
+                    ...Object.keys(availableCommands).map((cmd, index) => (
+                        <ClickableCommand bottomRef={bottomRef} index={index} onMouseEnter={() => handleMouseEnter(cmd)} onMouseLeave={handleMouseLeave} key={cmd} command={cmd} onClick={() => handleCommand(cmd)} />
+                    )),
+                ])
+                break
+            case "about":
+                setOutput((prev) => [...prev, <About key={command}></About>])
+                break
+            case "problem":
+                setOutput((prev) => [...prev, <Problem key={command}></Problem>])
+                break
+            case "data":
+                setOutput((prev) => [...prev, <Data key={command}></Data>])
+                break
+            case "food":
+                setOutput((prev) => [...prev, <Food key={command}></Food>])
+                break
+            case "token":
+                setOutput((prev) => [...prev, <Token key={command}></Token>])
+                break
+
+            default:
+                if (command in availableCommands) {
+                    setOutput((prev) => [...prev, availableCommands[command as keyof typeof availableCommands]])
+                } else {
+                    setOutput((prev) => [...prev, ` sdsh: command not found: ${command}. Type 'ls' for available commands.`])
+                }
+        }
+
+        setInputValue("")
+        setInputWidth(30)
+    }
+
+
+    const handleIcon = (e: string) => {
+        for (let index = 0; index < e.length; index++) {
+            const element = e[index];
+            setInputValue((pre) => pre + element);
+            setInputWidth((pre) => pre + 15)
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+        // window.scrollTo(0, document.body.scrollHeight);
+        handleCommand(e)
     }
 
 
     return (
-        <div className=" p-4 h-screen font-mono flex flex-col gap-3" onClick={focusInput}>
-            <div className="flex flex-grow"></div>
-            <div className=" lg:w-[55%] md:[85%]  lg:text-2xl md:text-xl text-lg lg:px-0 px-2">
+        <section className="p-4 flex flex-col h-screen gap-4">
+            <div className="flex-grow">
+
+            </div>
+            <div className=" lg:w-[55%] md:[85%]  lg:text-3xl md:text-2xl text-xl lg:px-0 ">
 
                 <Image src={logo} className="w-72 mt-10" alt="logo"></Image>
 
                 <TypeAnimation
 
                     sequence={[
+                        ``,
+                        900, // delay
                         `We are creating a next-generation platform where AI agents can deliver a science-backed healthy diet in just one click.`,
-                        5000, // delay
-
                     ]}
                     speed={90}
                     wrapper="p"
                     cursor={false}
 
                     // repeat={Infinity}
-                    className="mt-16"
+                    className="mt-10"
                 >
 
                 </TypeAnimation>
 
             </div>
-            <div className="lg:text-2xl md:text-xl text-lg">
-                <h1 className="flex gap-3 text-gray-500">/Nutrigenix/agents <FaChevronRight className="my-auto text-lg"></FaChevronRight>ls</h1>
-                <div className="lg:text-2xl md:text-xl text-lg py-5">
-                    {/* Available commands: */}
-                    <ul>
-                        {availableCommands.map((cmd) => (
-                            <li key={cmd} onClick={handleNavigation} onMouseEnter={() => handleMouseEnter(cmd)} onMouseLeave={handleMouseLeave} className="text-[#ff735a] cursor-pointer">
-                                <TypeAnimation
+            <div className="lg:text-3xl md:text-2xl text-xl space-y-3">
+                <TypeAnimation
+                    sequence={[
+                        "",
+                        2000,
+                        `/Nutrigenix/agents > ls`, // delay
 
+                    ]}
+                    speed={70}
+                    wrapper="p"
+                    cursor={false}
+
+                    // repeat={Infinity}
+                    className="text-gray-500"
+                />
+                <ul>
+                    {
+                        Object.keys(availableCommands).map((cmd, index) => (
+                            <li key={cmd} className="text-[#ff735a] cursor-pointer w-fit" onClick={() => handleCommand(cmd)} onMouseEnter={() => handleMouseEnter(cmd)} onMouseLeave={handleMouseLeave}>
+                                <TypeAnimation
                                     sequence={[
+                                        "",
+                                        2500 + (index * 300), // delay
                                         cmd,
                                         1000, // delay
 
                                     ]}
-                                    speed={10}
+                                    speed={70}
                                     wrapper="p"
                                     cursor={false}
                                     // repeat={Infinity}
                                     className=""
                                 />
                             </li>
-                        ))}
-                    </ul>
-                </div>
+                        ))
+                    }
+                </ul>
             </div>
-            <div className="lg:text-2xl md:text-xl text-lg ">
-                {history.map((line, index) => (
-                    <div key={index} className={`${index % 2 == 0 ? "text-gray-500" : ""}`}>
-                        {typeof line === "string" ? line : React.createElement(React.Fragment, { key: index }, line)}
-                    </div>
+            <div className="">
+                {output.map((line, index) => (
+                    <OutputLine key={index} className={`space-y-2 ${index % 2 == 0 ? "text-gray-500" : ""}`} content={line} />
                 ))}
             </div>
-            <form ref={historyRef} id="target-element" onSubmit={handleInputSubmit} className="flex mt-4 lg:text-2xl md:text-xl pb-5 text-xl">
-                <h1 className='flex gap-3 '>
+            <div className="flex gap-2 lg:text-3xl md:text-2xl text-xl md:my-4 my-2">
+                <TypeAnimation
 
-                    <TypeAnimation
+                    sequence={[
+                        '/Nutrigenix/agents >',
 
-                        sequence={[
-                            `/Nutrigenix/agents`,
-                            1000, // delay
-
-                        ]}
-                        speed={20}
-                        wrapper="p"
-                        cursor={false}
-                        // repeat={Infinity}
-                        className=""
-                    >
-
-                    </TypeAnimation>
-                    <span className='text-lg my-auto'><FaChevronRight className='font-extrabold' /></span></h1>
-                <input
-                    type="text"
-                    value={currentInput}
-                    onChange={handleInputChange}
-                    className="bg-transparent outline-none transition-all duration-300"
-                    style={{ width: `${inputWidth}px` }}
-                    ref={inputRef}
-
+                    ]}
+                    speed={70}
+                    wrapper="p"
+                    cursor={false}
+                    // repeat={Infinity}
+                    className=""
                 />
-                <IoChatbubblesOutline id="chatIcon" className="my-auto text-3xl" />
-            </form>
-        </div>
+                <Input value={inputValue} onChange={setInputValue} onSubmit={handleCommand} setInputWidth={setInputWidth} inputWidth={inputWidth} />
+                <IoChatbubblesOutline onClick={() => handleIcon("ls")} id="chatIcon" className="my-auto text-4xl cursor-pointer" />
+            </div>
+            <div ref={bottomRef} className="py-2" />
+        </section>
     )
 }
 

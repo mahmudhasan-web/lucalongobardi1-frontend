@@ -4,10 +4,11 @@ import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
 import image from '@/assists/Vector 6.png'
 import "./Food.css"
+import TypingText from '../Test';
 
 const Food = () => {
     return (
-        <div  className="lg:text-2xl md:text-xl text-lg lg:w-[75%] md:[90%] w-full py-5 relative">
+        <div  className="lg:text-3xl md:text-2xl text-xl lg:w-[75%] md:[90%] w-full py-2 px-2 relative">
             <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-6 flex gap-5">
                 <FaChevronRight className="font-extrabold lg:text-4xl md:text-3xl text-2xl rotate-90" /> Food and Nutrition
             </h1>
@@ -53,9 +54,10 @@ const Food = () => {
                     {/* Section 5 */}
                     <div className="mb-6">
                         <h2 className=" font-bold mb-2">Easy Meal Planning</h2>
-                        <p className="">
+                        <TypingText text="WWe plan your meal for a day, a week, or a month. You can change whenever you want, and the rest we do it all." speed={30}></TypingText>
+                        {/* <p className="">
                             We plan your meal for a day, a week, or a month. You can change whenever you want, and the rest we do it all.
-                        </p>
+                        </p> */}
                     </div>
                 </div>
                 <div className='absolute top-[30%] right-[5%] opacity-50'>
