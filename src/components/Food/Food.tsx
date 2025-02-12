@@ -1,8 +1,8 @@
 'use client'
-import Image from 'next/image';
+// import Image from 'next/image';
 import React from 'react';
 import { FaChevronRight } from 'react-icons/fa';
-import image from '@/assists/Vector 6.png'
+// import image from '@/assists/Vector 6.png'
 import "./Food.css"
 import TypingText from '../Test';
 
@@ -61,7 +61,7 @@ const Food = () => {
                     </div>
                 </div>
                 <div className='absolute top-[30%] right-[5%] opacity-50'>
-                    <Image src={image} alt='image' className='lg:w-64 w-56'></Image>
+                    <img src={`/Vector 6.png`} alt='image' className='lg:w-64 w-56'></img>
                 </div>
             </div>
 

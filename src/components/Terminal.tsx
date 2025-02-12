@@ -6,8 +6,8 @@ import React, { useState, useRef, useEffect, JSX } from "react"
 import About from "./About/About"
 import { TypeAnimation } from "react-type-animation"
 import { IoChatbubblesOutline } from "react-icons/io5"
-import logo from '@/assists/Vector 2.png'
-import Image from "next/image"
+// import logo from '@/assists/Vector 2.png'
+// import Image from "next/image"
 import Problem from "./Problem/Problem"
 import Data from "./Data/Data"
 import Food from "./Food/Food"
@@ -110,7 +110,7 @@ export default function Terminal() {
             </div>
             <div className=" lg:w-[55%] md:[85%]  lg:text-3xl md:text-2xl text-xl lg:px-0 ">
 
-                <Image src={logo} className="w-72 mt-10" alt="logo"></Image>
+                <img src={`/Vector 2.png`} className="w-72 mt-10" alt="logo"></img>
 
                 <TypeAnimation
 

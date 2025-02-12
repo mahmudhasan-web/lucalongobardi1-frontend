@@ -6,9 +6,9 @@
 .space-mono-regular {
   font-family: "Space Mono", serif;
   font-weight: 500;
-  line-height: 2.5;
+  line-height: 1.5;
   /* transform: scaleY(1.1); */
-  display: inline-block;
+  /* display: inline-block; */
   /* transform: scale(1.1); */
   /* font-style: normal; */
 }
@@ -46,4 +46,13 @@
   100% {
     color: #ff735a; /* Back to the initial color */
   }
+}
+
+body {
+  font-family: "Monaspace Neon",monospace;
+  font-size: 1rem;
+}
+
+html {
+  scroll-behavior: smooth;
 }
