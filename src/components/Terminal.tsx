@@ -104,7 +104,7 @@ export default function Terminal() {
 
 
     return (
-        <section className="p-4 flex flex-col h-screen gap-4">
+        <section className="p-4 flex flex-col h-screen lg:gap-4 md:gap-3 gap-2">
             <div className="flex-grow">
 
             </div>
@@ -173,7 +173,7 @@ export default function Terminal() {
                     <OutputLine key={index} className={`space-y-2 ${index % 2 == 0 ? "text-gray-500" : ""}`} content={line} />
                 ))}
             </div>
-            <div className="flex gap-2 lg:text-3xl md:text-2xl text-xl md:my-4 my-2">
+            <div className="flex gap-2 lg:text-3xl md:text-2xl text-xl">
                 <TypeAnimation
 
                     sequence={[
@@ -187,7 +187,7 @@ export default function Terminal() {
                     className=""
                 />
                 <Input value={inputValue} onChange={setInputValue} onSubmit={handleCommand} setInputWidth={setInputWidth} inputWidth={inputWidth} />
-                <IoChatbubblesOutline onClick={() => handleIcon("ls")} id="chatIcon" className="my-auto text-4xl cursor-pointer" />
+                <IoChatbubblesOutline onClick={() => handleIcon("ls")} id="chatIcon" className="my-auto font-extrabold lg:text-4xl text-3xl  cursor-pointer" />
             </div>
             <div ref={bottomRef} className="py-2" />
         </section>

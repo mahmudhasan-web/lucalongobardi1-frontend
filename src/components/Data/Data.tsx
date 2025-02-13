@@ -6,8 +6,8 @@ import TypingText from '../Test';
 const Data = () => {
     return (
         <div  className="lg:text-3xl md:text-2xl text-xl py-2 px-2 lg:w-[85%] w-full">
-            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-4 flex gap-5">
-                <FaChevronRight className="font-extrabold lg:text-4xl md:text-3xl text-2xl rotate-90" /> Data
+            <h1 className="lg:text-3xl md:text-2xl text-xl font-bold mb-4 flex md:gap-5 gap-3 text-color">
+                <FaChevronRight className="font-extrabold lg:text-4xl md:text-3xl text-2xl rotate-90 my-auto" /> Data
             </h1>
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-6 my-10">
                 {/* Card 1 */}

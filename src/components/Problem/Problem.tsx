@@ -11,26 +11,26 @@ const Problem = () => {
     return (
         <section className='lg:text-3xl md:text-2xl text-xl relative py-2 px-2'>
             <div className=" relative z-50 lg:w-[75%] md:w-[90%] w-full">
-            <h1 className=" lg:text-3xl md:text-2xl text-xl font-bold mb-4 flex gap-5">
-                <FaChevronRight className="font-extrabold rotate-90" /> The Problem
+            <h1 className=" lg:text-3xl md:text-2xl text-xl font-bold mb-4 flex md:gap-5 gap-3 text-color">
+                <FaChevronRight className="font-extrabold lg:text-4xl md:text-3xl text-2xl rotate-90 my-auto" /> The Problem
             </h1>
-            <p className="mb-6 flex gap-2">
+            <p className="mb-6 flex gap- text-color">
                 <img src={`/Vector 6 (1).png`} alt='image1' className='lg:w-7 w-5 my-auto'></img>
                 Confusion about healthy eating.
             </p>
-            <p className="mb-6 flex gap-2">
+            <p className="mb-6 flex gap-2 text-color">
             <img src={`/Vector 6 (1).png`} alt='image1' className='lg:w-7 w-5 my-auto'></img>
                 Lack of personalized nutrition guidance.
             </p>
-            <p className="mb-6 flex gap-2">
+            <p className="mb-6 flex gap-2 text-color">
             <img src={`/Vector 6 (1).png`} alt='image1' className='lg:w-7 w-5 my-auto'></img>
                 No easy way to match diet with taste.
             </p>
-            <p className="mb-6 flex gap-2">
+            <p className="mb-6 flex gap-2 text-color">
             <img src={`/Vector 6 (1).png`} alt='image1' className='lg:w-7 w-5 my-auto'></img>
                 Lack of personal motivation and convenience.
             </p>
-            <p className="mb-6 flex gap-2">
+            <p className="mb-6 flex gap-2 text-color">
             <img src={`/Vector 6 (1).png`} alt='image1' className='lg:w-7 w-5 my-auto'></img>
                 Accessibility of healthy options.
             </p>

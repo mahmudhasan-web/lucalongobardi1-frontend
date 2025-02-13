@@ -10,7 +10,7 @@ const About = () => {
 
     return (
         <div className=" lg:text-3xl md:text-2xl text-xl lg:w-[75%] md:[90%] w-full lg:px-0 py-2 px-2 transition-all duration-1000">
-            <h1 className="lg:text-3xl md:text-2xl text-xl  font-bold mb-4 flex gap-5"> <FaChevronRight className='font-extrabold my-auto rotate-90' /> About Us</h1>
+            <h1 className="lg:text-3xl md:text-2xl text-xl  font-bold mb-4 flex md:gap-5 gap-3 text-color"> <FaChevronRight className='font-extrabold lg:text-4xl md:text-3xl text-2xl rotate-90 my-auto' /> About Us</h1>
             <p className=" mb-6">
                 Modern AI is set to revolutionize how people interact with nutrition and wellness in their daily lives.
             </p>
